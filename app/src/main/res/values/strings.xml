@@ -12,4 +12,5 @@
     <string name="dynamic_text">这是动态列表</string>
     <string name="me_text">这是我列表</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_tow_degree">TowDegree</string>
 </resources>
