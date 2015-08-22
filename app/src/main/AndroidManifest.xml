@@ -20,6 +20,10 @@
             android:name=".TwoDegree"
             android:label="@string/title_activity_two_degree" >
         </activity>
+        <activity
+            android:name=".FriendActivity"
+            android:label="@string/title_activity_two_degree" >
+        </activity>
     </application>
 
 </manifest>

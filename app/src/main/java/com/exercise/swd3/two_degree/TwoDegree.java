@@ -1,5 +1,6 @@
 package com.exercise.swd3.two_degree;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -107,7 +108,8 @@ public class TwoDegree extends ActionBarActivity {
                                     int position, long id) {
                 System.out.println(names[position]
                         + "请点击我");
-            }
+                startActivity(new Intent(TwoDegree.this, FriendActivity.class));
+                    }
         });
         list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -116,6 +118,7 @@ public class TwoDegree extends ActionBarActivity {
                                        int position, long id) {
                 System.out.println(names[position]
                         + "请选择我");
+
             }
 
             @Override
