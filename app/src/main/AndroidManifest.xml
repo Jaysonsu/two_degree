@@ -40,6 +40,22 @@
             android:name=".infomation.InformationActivity"
             android:label="@string/title_activity_me" >
         </activity>
+        <activity
+            android:name=".me.ChangeName"
+            android:label="@string/title_activity_change_name" >
+        </activity>
+        <activity
+            android:name=".me.ChangeEmotion"
+            android:label="@string/title_activity_change_emotion" >
+        </activity>
+        <activity
+            android:name=".me.ChangeAge"
+            android:label="@string/title_activity_change_age" >
+        </activity>
+        <activity
+            android:name=".me.ChangeSex"
+            android:label="@string/title_activity_change_sex" >
+        </activity>
     </application>
 
 </manifest>

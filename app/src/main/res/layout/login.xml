@@ -16,7 +16,7 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Please enter your phone number"
+        android:hint="请输入手机号"
         android:selectAllOnFocus="true"
         android:inputType="phone"
         android:layout_gravity="center_horizontal" />
@@ -24,17 +24,19 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Please enter the password"
+        android:hint="请输入密码"
         android:selectAllOnFocus="true"
         android:inputType="textPassword"
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="307dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/login"
         android:id="@+id/loginBtn"
-        android:background="#c9124afc"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.05"/>
+        android:background="@drawable/u12"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
