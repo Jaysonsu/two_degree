@@ -27,7 +27,7 @@ public class DynamicActivity extends Activity {
     private String[] names = new String[]
             { "leo", "jayson", "surge", "dy"};
     private String[] substance = new String[]
-            { "听到一句很装逼的话：你，就是你的命运。", "人生总有好运气，飘扬过海来看你。", "我倒要看看，任何事我拼尽全力去做会怎样。","成功的人那么多，为什么不可以是我。我就是要做最出色最好的那一个，得到大家的认同。"};
+            { "听到一句很装逼的话：你，就是你的命运。", "人生总有好运气，飘扬过海来看你。", "我倒要看看，任何事我拼尽全力去做会怎样。","总有人要成功，为什么不可以是我。我就是要做最出色最好的那一个，得到大家的认同。"};
     private String[] times = new String[]
             {"3分钟前" , "7分钟前" , "12分钟前" ,"15分钟前" };
     @Override

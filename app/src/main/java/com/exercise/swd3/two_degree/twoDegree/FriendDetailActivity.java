@@ -1,11 +1,13 @@
 package com.exercise.swd3.two_degree.twoDegree;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.exercise.swd3.two_degree.MainActivity;
 import com.exercise.swd3.two_degree.R;
 
 /**
@@ -17,6 +19,13 @@ public class FriendDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friend_information);
+        findViewById(R.id.sendBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FriendDetailActivity.this, SendImActivity.class));
+            }
+        });
+
     }
 
     @Override
