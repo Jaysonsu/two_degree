@@ -37,6 +37,7 @@ public class HttpUtil {
 					httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 					HttpResponse httpResponse;
 					try{
+						Log.d("jayson", "start get response");
 						httpResponse=new DefaultHttpClient().execute(httpPost);
 						if(httpResponse.getStatusLine().getStatusCode()==200){//response success
 							Log.d("jayson","response successs");
@@ -56,9 +57,15 @@ public class HttpUtil {
 							myHandler.sendMessage(message);
 						}
 					}catch(Exception e){
+						Log.d("jayson","exception1:"+e.getMessage());
+						message.what=1;
+						myHandler.sendMessage(message);
 						e.printStackTrace();
 					}
 				}catch(Exception e){
+					Log.d("jayson","exception2:"+e.getMessage());
+					message.what=1;
+					myHandler.sendMessage(message);
 					e.printStackTrace();
 				}
 			}

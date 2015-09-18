@@ -29,7 +29,10 @@ public class HttpConstants {
 	 * 用户登录
 	 */
 	public static String HTTP_LOGIN=HTTP_REQUEST+"user/userLogin.do";
-	
+	/**
+	 *
+	 */
+	public static String HTTP_GET_TWO_DEGREE_LIST = HTTP_REQUEST + "two_degree/getTwoDegreeInfo.do";
 	/**
 	 * 修改用户图像
 	 */

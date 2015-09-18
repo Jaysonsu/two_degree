@@ -16,9 +16,7 @@ import com.exercise.swd3.two_degree.bean.UserBean;
 import com.exercise.swd3.two_degree.callback.ResultCallback;
 import com.exercise.swd3.two_degree.constants.HttpConstants;
 import com.exercise.swd3.two_degree.util.AppUtils;
-import com.exercise.swd3.two_degree.ut
-
-il.HttpUtil;
+import com.exercise.swd3.two_degree.util.HttpUtil;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -43,6 +41,8 @@ public class LoginActivity extends Activity {
 
                 if (usernameEdit.getText() == null || passwordEdit.getText() ==null || "".equals(usernameEdit.getText().toString()) || "".equals(passwordEdit.getText().toString())) {
                     showToast("Please input username or password!");
+                } else if(!AppUtils.checkNetwork(LoginActivity.this)) {
+                    showToast("Please check network!");
                 } else {
                     List<NameValuePair> allP=new ArrayList<NameValuePair>();
                     String username = usernameEdit.getText().toString();

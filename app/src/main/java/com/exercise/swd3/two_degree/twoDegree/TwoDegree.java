@@ -3,14 +3,29 @@ package com.exercise.swd3.two_degree.twoDegree;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.exercise.swd3.two_degree.LoginActivity;
+import com.exercise.swd3.two_degree.MainActivity;
 import com.exercise.swd3.two_degree.R;
+import com.exercise.swd3.two_degree.bean.BaseBean;
+import com.exercise.swd3.two_degree.bean.UserBean;
+import com.exercise.swd3.two_degree.callback.ResultCallback;
+import com.exercise.swd3.two_degree.constants.HttpConstants;
+import com.exercise.swd3.two_degree.twoDegree.bean.TwoDegreeInfo;
+import com.exercise.swd3.two_degree.util.AppUtils;
+import com.exercise.swd3.two_degree.util.HttpUtil;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,14 +45,15 @@ public class TwoDegree extends Activity {
             {"0.25km","0.34km","0.44km","0.58km"};
     private int[] images = new int[]
             { R.drawable.d , R.drawable.d ,R.drawable.d ,R.drawable.d };
+    public List<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.two_degree);
-
-
+        getTwoDegreeList();
+        /**
         List<Map<String, Object>> listItems =
                 new ArrayList<Map<String, Object>>();
         for (int i = 0; i < names.length; i++)
@@ -50,8 +66,8 @@ public class TwoDegree extends Activity {
             listItem.put("images",images[i]);
             listItems.add(listItem);
         }
-
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems,
+        */
+        SimpleAdapter simpleAdapter = new SimpleAdapter(this, items,
                 R.layout.simple_item,
                 new String[] { "personName", "header" , "desc" , "dist" , "images"},
                 new int[] { R.id.name, R.id.header , R.id.desc , R.id.dist , R.id.images});
@@ -84,7 +100,45 @@ public class TwoDegree extends Activity {
             }
         });
     }
+    public void getTwoDegreeList(){
+        List<NameValuePair> allP=new ArrayList<NameValuePair>();
+        String phones = "18050236415,18050236417,18850584090";
+        allP.add(new BasicNameValuePair("phones", phones));
+        HttpUtil.doPost(HttpConstants.HTTP_GET_TWO_DEGREE_LIST, allP, new ResultCallback() {
 
+            @Override
+            public void getReslt(String result) {
+                // TODO Auto-generated method stub
+                Log.d("jayson", "getReslt==" + result);
+                if (!result.isEmpty() && !"1".equals(result)) {
+                    BaseBean b = JSON.parseObject(result, BaseBean.class);
+                    if ("0".equals(b.getRespcode())) {
+                        List<TwoDegreeInfo> list = JSON.parseArray(b.getData(), TwoDegreeInfo.class);
+                        if (list != null && list.size() > 0) {
+                            for (int i = 0; i < list.size(); i++) {
+                                Map<String, Object> listItem = new HashMap<String, Object>();
+                                listItem.put("header", R.drawable.leo);
+                                listItem.put("personName", list.get(i).getName());
+                                listItem.put("desc", "有" + list.get(i).getCount() + "个好友认识他");
+                                listItem.put("dist", "0.25km");
+                                listItem.put("images", R.drawable.d);
+                                items.add(listItem);
+                            }
+                        } else {
+                            showToast("get list error!");
+                        }
+                    } else if ("0".equals(b.getRespcode())) {
+                        showToast(b.getMessage());
+                    } else {
+                        showToast(b.getMessage());
+                    }
+                } else {
+                    Toast.makeText(TwoDegree.this, "服务器响应失败", Toast.LENGTH_LONG).show();
+//                            close();
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,5 +160,8 @@ public class TwoDegree extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void showToast(String str){
+        Toast.makeText(TwoDegree.this, str, Toast.LENGTH_LONG).show();
     }
 }
